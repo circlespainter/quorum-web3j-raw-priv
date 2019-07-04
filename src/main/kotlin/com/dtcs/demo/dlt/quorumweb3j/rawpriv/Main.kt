@@ -7,7 +7,7 @@ import org.web3j.crypto.WalletUtils
 import java.io.File
 import java.math.BigInteger
 
-fun main(args: Array<String>) {
+fun main() {
     val qs = QuorumService(PRIVATE_FOR_FROM_NODE_PUBK)
 
     val tmpDir = System.getProperty("java.io.tmpdir")
@@ -17,7 +17,6 @@ fun main(args: Array<String>) {
 
     val wallet = WalletUtils.loadCredentials("pwd", filePath)
     val nonce = BigInteger.ZERO // Always new account
-    val gasLimit = BigInteger.valueOf(100000)
     val func = Function("inc", emptyList(), emptyList())
 
     val sendTransaction = qs.signAndSendFunctionCallTx(
@@ -25,7 +24,7 @@ fun main(args: Array<String>) {
         CONTRACT_ADDR,
         func,
         nonce,
-        gasLimit,
+        DEFAULT_GAS_LIMIT,
         PRIVATE_FOR_TO_NODE_PUBK
     ).get()
 

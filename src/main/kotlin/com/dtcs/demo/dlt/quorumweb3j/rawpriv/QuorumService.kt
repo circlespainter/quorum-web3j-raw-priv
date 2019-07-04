@@ -60,7 +60,7 @@ internal class QuorumService(
     }
 
     private val web3Service = HttpService(quorumUrl)
-    private val quorum = Quorum.build(web3Service)
+    internal val quorum = Quorum.build(web3Service)
     private val enclaveService = EnclaveService(tesseraUrl, tesseraPort)
-    private val enclave = Tessera(enclaveService, quorum)
+    internal val enclave = Tessera(enclaveService, quorum)
 }
