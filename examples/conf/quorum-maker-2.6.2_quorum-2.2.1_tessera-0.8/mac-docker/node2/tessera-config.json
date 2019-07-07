@@ -1,0 +1,62 @@
+{
+   "type" : "config",
+   "useWhiteList" : false,
+   "disablePeerDiscovery" : false,
+   "jdbc" : {
+      "url" : "jdbc:h2:file:/node2/node/qdata/node2;AUTO_SERVER=TRUE",
+      "autoCreateTables" : true
+   },
+   "serverConfigs" : [ {
+      "app" : "P2P",
+      "enabled" : true,
+      "communicationType" : "REST",
+      "sslConfig" : {
+         "tls" : "OFF",
+         "generateKeyStoreIfNotExisted" : false,
+         "serverTrustCertificates" : [ ],
+         "serverTrustMode" : "TOFU",
+         "clientTrustCertificates" : [ ],
+         "clientTrustMode" : "TOFU"
+      },
+      "serverSocket" : {
+         "type" : "INET",
+         "port" : 22002,
+         "hostName" : "http://10.50.0.3"
+      }
+   }, {
+      "app" : "Q2T",
+      "enabled" : true,
+      "communicationType" : "UNIX_SOCKET",
+      "serverSocket" : {
+         "type" : "UNIX",
+         "path" : "/node2/node/qdata/node2.ipc"
+      }
+   }, {
+      "app" : "ThirdParty",
+      "enabled" : true,
+      "communicationType" : "REST",
+      "sslConfig" : {
+         "tls" : "OFF",
+         "generateKeyStoreIfNotExisted" : false,
+         "serverTrustCertificates" : [ ],
+         "serverTrustMode" : "TOFU",
+         "clientTrustCertificates" : [ ],
+         "clientTrustMode" : "TOFU"
+      },
+      "serverSocket" : {
+         "type" : "INET",
+         "port" : 22008,
+         "hostName" : "http://10.50.0.3"
+      }
+   } ],
+   "peer" : [ {
+      "url" : "http://10.50.0.2:22002/"
+   } ],
+   "keys" : {
+      "keyData" : [ {
+         "privateKeyPath" : "/node2/node/keys/node2.key",
+         "publicKeyPath" : "/node2/node/keys/node2.pub"
+      } ]
+   },
+   "alwaysSendTo" : [ ]
+}

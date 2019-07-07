@@ -52,7 +52,11 @@ can run multiple times to increase the counter further.
 
 As an alternative you can also run `MainWithWrapper` that uses the
 [`Counter.java`](./src/main/kotlin/com/dtcs/demo/dlt/quorumweb3j/rawpriv/Counter.java) contract wrapper
-[generated using the web3j command line tools](https://docs.web3j.io/smart_contracts.html#smart-contract-wrappers).
+[generated using the web3j command line tools](https://docs.web3j.io/smart_contracts.html#smart-contract-wrappers) like so:
+
+```bash
+$ web3j solidity generate -a Counter.abi -o . -p mypackage
+```
 
 ### Notes
 
@@ -61,7 +65,7 @@ enabled in the configuration as the `web3j/quorum` library [invokes the `storera
   - The Tessera Third Party API is enabled by default in 7nodes but not yet in [`quorum-maker` 2.6.2](https://github.com/synechron-finlabs/quorum-maker/tree/V2.6.2)
     that uses Tessera 0.8 but the legacy 0.7 configuration format; if you want to use `quorum-maker` you'll need to
     manually convert and overwrite the nodes' Tessera configuration after setting up the nodes but before running them
-    (configuration examples for Linux with Docker are provided in [`examples/conf`](./examples/conf)).
+    (configuration examples for Linux and macOS with Docker are provided in [`examples/conf`](./examples/conf)).
   - Unfortunately there is no `quorum-maker` version that works with Tessera 0.9.x and Quorum 2.2.4 as of 20190704.
 - The contract is compiled with `solcjs --bin --abi Counter.sol` using `solc@0.5.0` and both the ABI and bytecode are provided;
 beware that later version of `solc` might produce bytecode that is invalid for your specific Quorum version;
